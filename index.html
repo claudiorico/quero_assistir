@@ -7,10 +7,13 @@
     <title>Lista de filmes para assistir</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="modal.css">
+    <script src="key.js"></script>
 </head>
 
 <body>
-    <header><h2><i class="bi bi-film"></i>MyMovies</h2>
+    <header>
+        <h2><i class="bi bi-film"></i>MyMovies</h2>
         <section id="search-container">
             <div class="input-wrapper movie-name-wrapper">
                 <label for="imovie-name">Nome:</label>
@@ -23,7 +26,39 @@
             <button type="button" id="search-button"><i class="bi bi-search"></i></button>
         </section>
     </header>
-    <main></main>
+    <main>
+        <h2>Comece agora a sua lista de filmes</h2>
+        <section id="movie-list"></section>
+        <article id="modal-overlay" class="overlay">
+            <section id="modal-background"></section>
+            <section id="modal-container">
+                <h2 id="movie-title">Fight Club - 1999</h2>
+                <section id="modal-body">
+                    <img src="https://m.media-amazon.com/images/M/MV5BMmEzNTkxYjQtZTc0MC00YTVjLTg5ZTEtZWMwOWVlYzY0NWIwXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg"
+                        alt="Poster do Filme" id="movie-poster">
+                    <div id="movie-info">
+                        <h3 id="movie-plot">
+                            An insomniac office worker and a devil-may-care soap maker form an underground fight club
+                            that evolves into much more.
+                        </h3>
+                        <div id="movie-cast">
+                            <h4>Elenco:</h4>
+                            <h5>Brad Pitt, Edward Norton, Meat Loaf</h5>
+                        </div>
+                        <div id="movie-genre">
+                            <h4>Gênero:</h4>
+                            <h5>Drama</h5>
+                        </div>
+                    </div>
+                </section>
+                <section id="modal-footer">
+                    <button id="add-to-list">Adicionar à Lista</button>
+                </section>
+            </section>
+        </article>
+    </main>
+    <script src="script.js"></script>
+    <script src="modal.js"></script>
 </body>
 
 </html>
