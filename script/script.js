@@ -4,7 +4,7 @@ const movieName = document.getElementById("imovie-name");
 const movieYear = document.getElementById("imovie-year");
 const movieListContainer = document.getElementById("movie-list");
 
-let movieList = [];
+let movieList = JSON.parse(localStorage.getItem('movieList')) ?? [];
 
 async function searchButtonClickHandler() {
   try {
@@ -46,14 +46,15 @@ function addToList(data) {
   }
   movieList.push(data);
   updateUI(data);
+  updateLocalStorage();
   overlay.classList.remove("open");
 }
 
 function updateUI(data) {
   movieListContainer.innerHTML += `
-  <article>
+  <article id='movie-card-${data.imdbID}'>
     <img src="${data.Poster}" alt="Poster do ${data.Title}">
-    <button class="remove-button"><i class="bi bi-trash"></i>Remover</button>
+    <button class="remove-button" onclick='{removeFilmFromList("${data.imdbID}")}' ><i class="bi bi-trash"></i>Remover</button>
   </article>`;
 }
 
@@ -63,5 +64,17 @@ function isFilmAlredyOnTheList(imdbId){
   }
   return movieList.find(isThisIdFromThisMovie);
 }
+
+function removeFilmFromList(imdbId){
+  movieList = movieList.filter((movie) => movie.imdbID !== imdbId);
+  document.getElementById(`movie-card-${imdbId}`).remove();
+  updateLocalStorage();
+}
+
+function updateLocalStorage(){
+  localStorage.setItem('movieList', JSON.stringify(movieList));
+}
+
+movieList.forEach(updateUI);
 
 searchButton.addEventListener("click", searchButtonClickHandler);
